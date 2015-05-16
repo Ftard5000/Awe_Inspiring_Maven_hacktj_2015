@@ -1,8 +1,6 @@
 package com.agarextend.app;
-public class Movable
+public class Movable extends PositionedObject
 {
-   private int x;
-   private int y;
    private double direction;
    private double pointerDist;
    private int mass;
@@ -12,8 +10,7 @@ public class Movable
    
    public Movable()
    {
-      x = (int)(Math.random());
-      y = (int)(Math.random());
+      super(Math.random(), Math.random());
       direction = 0;
       pointerDist = 0.0;
       mass = 10;
@@ -26,9 +23,9 @@ public class Movable
       speed = 1/mass;
    }
    
-   private void addMass(Movable x)
+   private void addMass(Movable m)
    {
-      mass += x.getMass();
+      mass += m.getMass();
       speed = 1/mass;
    }
    
@@ -36,11 +33,12 @@ public class Movable
    {
       return mass;
    }
-   
+   private int setMass(int m) { this.mass = m; }
+
    private void move()
    {
-      x += speed * Math.cos(direction);
-      y += speed * Math.sin(direction);
+      incX(speed * Math.cos(direction));
+      incY(speed * Math.sin(direction));
    }
    
    private String getChar()
