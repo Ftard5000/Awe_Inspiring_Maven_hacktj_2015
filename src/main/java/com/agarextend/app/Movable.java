@@ -43,4 +43,9 @@ public class Movable
       y += speed * Math.sin(direction);
    }
    
+   private String getChar()
+   {
+      return display;
+   }
+   
 }
