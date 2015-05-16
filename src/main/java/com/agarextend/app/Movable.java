@@ -7,7 +7,8 @@ public class Movable
    private double pointerDist;
    private int mass;
    private double speed;
-   private final double pi = Math.Pi();
+   private final double pi = Math.PI;
+   private final String display = new String("_");
    
    public Movable()
    {
