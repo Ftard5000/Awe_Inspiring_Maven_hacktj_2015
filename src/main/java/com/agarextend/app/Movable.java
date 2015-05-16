@@ -1,44 +1,75 @@
 package com.agarextend.app;
-public class Movable extends PositionedObject
+public abstract class Movable extends PositionedObject
 {
    private double direction;
    private double pointerDist;
-   private int mass;
+   private double mass;
    private double speed;
    private final double pi = Math.PI;
-   private final String display = new String("_");
-   
+
    public Movable()
    {
       super(Math.random(), Math.random());
       direction = 0;
       pointerDist = 0.0;
-      mass = 10;
+      mass = 10.0;
       speed = 1.0;
    }
-   
-   private void addMass()
+
+   public double getDirection() {
+      return direction;
+   }
+
+   public void setDirection(double direction) {
+      this.direction = direction;
+   }
+
+   public double getPointerDist() {
+      return pointerDist;
+   }
+
+   public void setPointerDist(double pointerDist) {
+      this.pointerDist = pointerDist;
+   }
+
+   public double getSpeed() {
+      return speed;
+   }
+
+   public void setSpeed(double speed) {
+      this.speed = speed;
+   }
+
+
+   private double getMass()
+   {
+      return mass;
+   }
+
+   public void setMass(double m) {
+      this.mass = m;
+   }
+
+   public double getPi() {
+      return pi;
+   }
+
+   public void addMass()
    {
       mass++;
       speed = 1/mass;
    }
    
-   private void addMass(Movable m)
+   public void addMass(Movable m)
    {
       mass += m.getMass();
       speed = 1/mass;
    }
-   
-   private int getMass()
-   {
-      return mass;
-   }
-   private int setMass(int m) { this.mass = m; }
 
-   private void move()
+   public void move()
    {
       incX(speed * Math.cos(direction));
       incY(speed * Math.sin(direction));
    }
-   
+
 }

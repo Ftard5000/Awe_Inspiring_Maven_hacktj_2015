@@ -18,7 +18,7 @@ public abstract class PositionedObject {
       return x;
    }
 
-   public double incX(double i) {
+   public void incX(double i) {
       x += i;
    }
    public void setX(double x) {
@@ -33,9 +33,10 @@ public abstract class PositionedObject {
       this.y = y;
    }
 
-   public double incY(double i) {
+   public void incY(double i) {
       y += i;
    }
 
    public abstract void move();
+   public abstract void display();
 }
