@@ -71,11 +71,4 @@ public abstract class Movable extends PositionedObject
       incX(speed * Math.cos(direction));
       incY(speed * Math.sin(direction));
    }
-   
-
-   
-<<<<<<< HEAD
-
-=======
->>>>>>> 16cc4c48ab7ab4ed13095c27b1f49888a31c554a
 }
