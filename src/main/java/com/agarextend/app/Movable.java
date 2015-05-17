@@ -57,13 +57,13 @@ public abstract class Movable extends PositionedObject
    public void addMass()
    {
       mass++;
-      speed = 1/mass;
+      speed = 1/(double)mass;
    }
    
    public void addMass(Movable m)
    {
       mass += m.getMass();
-      speed = 1/mass;
+      speed = 1/(double)mass;
    }
 
    public void move()
