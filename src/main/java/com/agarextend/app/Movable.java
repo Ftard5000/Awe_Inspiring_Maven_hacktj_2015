@@ -74,5 +74,8 @@ public abstract class Movable extends PositionedObject
    
 
    
+<<<<<<< HEAD
 
+=======
+>>>>>>> 16cc4c48ab7ab4ed13095c27b1f49888a31c554a
 }
