@@ -56,14 +56,14 @@ public class Herbivore extends Movable
    }
    private void moveWall()
    {
-      if(getX()>Main.BWIDTH*.95)
-         setDirection(Math.PI);
-      else if(getX() < Main.BWIDTH*.05)
+      if(getX() < Main.BWIDTH*.05)
          setDirection(0);
-      else if(getY() > Main.BHEIGHT)
-         setDirection(3*Math.PI/2);
-      else if(getY() < Main.BHEIGHT*.05)
+      else if(getX() > Main.BWIDTH*.95)
+         setDirection(Math.PI);
+      else if(getY() < Main.BHEIGHT * .05)
          setDirection(Math.PI/2);
+      else if(getY() > Main.BHEIGHT * .95)
+         setDirection(3*Math.PI/2);
       move();
    }
    private int distTo(PositionedObject x)

@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
    public Point mousePoint;
    public Point playerLocation;
-   public static final int BHEIGHT = 1000;
+   public static final int BHEIGHT = 750;
    public static final int BWIDTH = 750;
    public JFrame winMain;
    public Point aiLocation; 
@@ -110,7 +110,10 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
                h.checkCollide(pellets);
             }
             for(Predator p : predators)
+            {
                p.choseMove();
+               p.checkCollide(herbivores);
+            }
             if(Math.random()<.01)
                pellets.add(new Pellet());
             repaint();
