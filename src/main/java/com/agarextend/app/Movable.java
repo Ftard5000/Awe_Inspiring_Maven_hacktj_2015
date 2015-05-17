@@ -5,6 +5,7 @@ public abstract class Movable extends PositionedObject
    private double pointerDist;
    private double speed;
    private final double pi = Math.PI;
+   public static final int RADIUSCONSTANT = 2;
 
    public Movable()
    {
@@ -48,10 +49,14 @@ public abstract class Movable extends PositionedObject
       incX((int)(speed * Math.cos(direction)));
       incY((int)(speed * Math.sin(direction)));
    }
+
    public String getType()
    {
       return "Movable";
    }
-   
+
+   public int getRadius() {
+      return getMass()/RADIUSCONSTANT;
+   }
 
 }

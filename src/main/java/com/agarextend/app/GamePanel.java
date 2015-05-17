@@ -23,7 +23,6 @@ public class GamePanel extends JPanel implements MouseMotionListener {
       image = new BufferedImage(frameSize, frameSize, BufferedImage.TYPE_INT_RGB);
       buffer = image.getGraphics();
 
-
       playerLocation = new Point(100, 100);
       System.out.println("How many by ai's?");
       Scanner sc = new Scanner(System.in);

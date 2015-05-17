@@ -23,7 +23,7 @@ public class Predator extends Movable
 
    public void display(Graphics g) {
       g.setColor(Color.red);
-      g.drawOval(getX()-, getY()-10, 20, 20);
+      g.drawOval(getX()-getRadius(), getY()-10, 20, 20);
    }
 
    public String getType()
@@ -88,6 +88,6 @@ public class Predator extends Movable
    }
    private int distTo(PositionedObject x)
    {
-      return (int)((x.getX()-getX())*(x.getX()-getX())+(x.getY()-getY())*(x.getY()-getY()));
+      return (x.getX()-getX())*(x.getX()-getX())+(x.getY()-getY())*(x.getY()-getY());
    }
 }

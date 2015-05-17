@@ -135,7 +135,6 @@ public abstract class PositionedObject {
    public void display(Graphics g) {
 
    }
-   
-      
-   
+
+   public abstract int getRadius();
 }
