@@ -27,32 +27,11 @@ public class Predator extends Movable
    {
       return "Predator";
    }
-   public void choseMove()
-   {
-      if(getX()>950 || getX()<50 || getY() > 950 || getY() < 50)
-         moveWall();
-      double r = Math.random();
-      setDirection(getDirection() + ((r/2)-.25));
-      move();
-   }
    public void move()
    {
-      
+      double r = Math.random();
+      setDirection(getDirection() + ((r/2)-.25));
       incX((int)(getSpeed() * Math.cos(getDirection())));
       incY((int)(getSpeed() * Math.sin(getDirection())));
-      
-      //System.out.println(getDirection()); <-- keep this stupid comment, apparently it is necessary.
-   }
-   private void moveWall()
-   {
-      if(getX()>950)
-         setDirection(Math.PI);
-      else if(getX() < 50)
-         setDirection(0);
-      else if(getY() > 950)
-         setDirection(3*Math.PI/2);
-      else
-         setDirection(Math.PI/2);
-      move();
    }
 }

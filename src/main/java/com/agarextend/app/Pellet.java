@@ -8,4 +8,7 @@ public class Pellet extends PositionedObject
       setSides(10);
       setMass((int)((Math.random()*3) +1.0));
    }
+   public int getRadius() {
+      return 3;
+   }
 }

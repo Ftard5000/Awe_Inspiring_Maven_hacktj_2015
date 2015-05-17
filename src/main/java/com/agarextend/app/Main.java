@@ -9,8 +9,6 @@ import java.util.Scanner;
  
  
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
-   public static final int PELLETRADIUS = 3;
-   public static final int RADIUSCONSTANT = 2;
    public Point mousePoint;
    public Point playerLocation;
    public static final int BHEIGHT = 1000;
@@ -66,19 +64,17 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       int radius;
       for(Predator k : predators)
       {
-         radius = k.getMass()/RADIUSCONSTANT;
-         g.fillOval(k.getX()-radius, k.getY()-radius, radius*2, radius*2);
+         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), k.getRadius()*2, k.getRadius()*2);
       }
       g.setColor(Color.blue);
       for(Herbivore k : herbivores)
       {
-         radius = k.getMass()/RADIUSCONSTANT;
-         g.fillOval(k.getX()-radius, k.getY()-radius, radius*2, radius*2);
+         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), k.getRadius()*2, k.getRadius()*2);
       }
       g.setColor(Color.black);
       for(Pellet k : pellets)
       {
-         g.fillOval(k.getX()-PELLETRADIUS, k.getY()-PELLETRADIUS, 2*PELLETRADIUS, 2*PELLETRADIUS);
+         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), 2*k.getRadius(), 2*k.getRadius());
       }
       g.setColor(Color.red);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
