@@ -11,13 +11,13 @@ import java.util.Scanner;
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
    public Point mousePoint;
    public Point playerLocation;
-   public static final int BHEIGHT = 1000;
-   public static final int BWIDTH = 1000;
+   public static final int BHEIGHT = 750;
+   public static final int BWIDTH = 750;
    public JFrame winMain;
    public Point aiLocation; 
-   private ArrayList<Predator> predators;
-   private ArrayList<Herbivore> herbivores;
-   private ArrayList<Pellet> pellets;      
+   public ArrayList<Predator> predators;
+   public ArrayList<Herbivore> herbivores;
+   public ArrayList<Pellet> pellets;      
    public Main() {
       playerLocation = new Point(100, 100);
       System.out.println("How many by ai's?");
@@ -44,7 +44,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       winMain.setSize(BHEIGHT, BWIDTH);
       addMouseMotionListener(this);
       winMain.add(this);
-      winMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      winMain.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       winMain.setVisible(true);
       Thread thread = new Thread(this);
       thread.start();
@@ -61,7 +61,6 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
     
       g.clearRect(0, 0, getWidth(), getHeight());
       g.setColor(Color.red);
-      int radius;
       for(Predator k : predators)
       {
          g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), k.getRadius()*2, k.getRadius()*2);
@@ -106,9 +105,15 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
                                                 ? playerLocation.getY()-dY : mousePoint.getY();
             playerLocation.setLocation(newX, newY);
             for(Herbivore h : herbivores)
+            {
                h.choseMove();
+               h.checkCollide(pellets);
+            }
             for(Predator p : predators)
+            {
                p.choseMove();
+               p.checkCollide(herbivores);
+            }
             if(Math.random()<.01)
                pellets.add(new Pellet());
             repaint();
