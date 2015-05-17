@@ -1,46 +1,75 @@
 package com.agarextend.app;
-public class Movable
+public abstract class Movable extends PositionedObject
 {
-   private int x;
-   private int y;
    private double direction;
    private double pointerDist;
-   private int mass;
+   private double mass;
    private double speed;
    private final double pi = Math.PI;
-   private final String display = new String("_");
-   
+
    public Movable()
    {
-      x = (int)(Math.random());
-      y = (int)(Math.random());
+      super(Math.random(), Math.random());
       direction = 0;
       pointerDist = 0.0;
-      mass = 10;
+      mass = 10.0;
       speed = 1.0;
    }
-   
-   private void addMass()
+
+   public double getDirection() {
+      return direction;
+   }
+
+   public void setDirection(double direction) {
+      this.direction = direction;
+   }
+
+   public double getPointerDist() {
+      return pointerDist;
+   }
+
+   public void setPointerDist(double pointerDist) {
+      this.pointerDist = pointerDist;
+   }
+
+   public double getSpeed() {
+      return speed;
+   }
+
+   public void setSpeed(double speed) {
+      this.speed = speed;
+   }
+
+
+   private double getMass()
+   {
+      return mass;
+   }
+
+   public void setMass(double m) {
+      this.mass = m;
+   }
+
+   public double getPi() {
+      return pi;
+   }
+
+   public void addMass()
    {
       mass++;
       speed = 1/mass;
    }
    
-   private void addMass(Movable x)
+   public void addMass(Movable m)
    {
-      mass += x.getMass();
+      mass += m.getMass();
       speed = 1/mass;
    }
-   
-   private int getMass()
+
+   public void move()
    {
-      return mass;
-   }
-   
-   private void move()
-   {
-      x += speed * Math.cos(direction);
-      y += speed * Math.sin(direction);
+      incX(speed * Math.cos(direction));
+      incY(speed * Math.sin(direction));
    }
    
    private String getChar()
@@ -48,4 +77,5 @@ public class Movable
       return display;
    }
    
+
 }
