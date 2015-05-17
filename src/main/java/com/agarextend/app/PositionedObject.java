@@ -58,7 +58,7 @@ public abstract class PositionedObject {
 /**********************************************
    Sets the number of sides
 **********************************************/
-   public void setSize(int i) {
+   public void setSide(int i) {
       this.sides = i;
    }
 

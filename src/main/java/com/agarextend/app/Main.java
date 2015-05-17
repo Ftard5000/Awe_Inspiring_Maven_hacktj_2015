@@ -104,7 +104,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
             System.out.println(k.getSides() + paths.toString("herb", k.getSides()));
          }
       }
-      g.setColor(Color.black);
+      g.setColor(Color.green);
       for(Pellet k : pellets)
       {
          g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), 2*k.getRadius(), 2*k.getRadius());

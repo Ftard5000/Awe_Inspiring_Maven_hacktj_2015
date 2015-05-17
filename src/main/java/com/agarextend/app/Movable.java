@@ -49,8 +49,8 @@ public abstract class Movable extends PositionedObject
 
    public void move()
    {
-      incX((int) (speed/(Math.sqrt((double)getMass())/5) * Math.cos(direction)));
-      incY((int) (speed/(Math.sqrt((double)getMass())/5) * Math.sin(direction)));
+      incX((int) (speed/(Math.sqrt((double)getMass())/2) * Math.cos(direction)));
+      incY((int) (speed/(Math.sqrt((double)getMass())/2) * Math.sin(direction)));
    }
 
    public String getType()
@@ -68,6 +68,7 @@ public abstract class Movable extends PositionedObject
          if(distToSquared(pellets.get(i)) < getRadius()*getRadius())
          {
             setMass(getMass()+pellets.get(i).getMass());
+            setSides(getMass());
             pellets.remove(i);
          }
 
