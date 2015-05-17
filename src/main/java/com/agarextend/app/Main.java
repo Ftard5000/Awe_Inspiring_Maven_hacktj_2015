@@ -9,6 +9,8 @@ import java.util.Scanner;
  
  
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
+   public static final int PELLETRADIUS = 3;
+   public static final int RADIUSCONSTANT = 2;
    public Point mousePoint;
    public Point playerLocation;
    public static final int BHEIGHT = 1000;
@@ -61,19 +63,22 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
     
       g.clearRect(0, 0, getWidth(), getHeight());
       g.setColor(Color.red);
+      int radius;
       for(Predator k : predators)
       {
-         g.drawOval(k.getX()-10, k.getY()-10, 20, 20);
+         radius = k.getMass()/RADIUSCONSTANT;
+         g.fillOval(k.getX()-radius, k.getY()-radius, radius*2, radius*2);
       }
       g.setColor(Color.blue);
       for(Herbivore k : herbivores)
       {
-         g.drawOval(k.getX()-10, k.getY()-10, 20, 20);
+         radius = k.getMass()/RADIUSCONSTANT;
+         g.fillOval(k.getX()-radius, k.getY()-radius, radius*2, radius*2);
       }
       g.setColor(Color.black);
       for(Pellet k : pellets)
       {
-         g.fillOval(k.getX()-10, k.getY()-10, 5, 5);
+         g.fillOval(k.getX()-PELLETRADIUS, k.getY()-PELLETRADIUS, 2*PELLETRADIUS, 2*PELLETRADIUS);
       }
       g.setColor(Color.red);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
