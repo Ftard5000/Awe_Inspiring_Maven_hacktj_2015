@@ -37,6 +37,48 @@ public abstract class PositionedObject {
       this.sides = sides;
       this.mass = mass;
    }
+   
+/**********************************************
+   Returns number of sides on object
+**********************************************/   
+   public int getSides() {
+      return sides;
+   }
+   
+/**********************************************
+   Increments number of sides on object by i
+**********************************************/   
+   public void incSides(int i) {
+      sides += i;
+   }
+   
+/**********************************************
+   Sets the number of sides
+**********************************************/
+   public void setSize(int i) {
+      this.sides = i;
+   }
+
+/**********************************************
+   Returns mass of object
+**********************************************/   
+   public int getMass() {
+      return mass;
+   }
+   
+/**********************************************
+   Increments massof object by i
+**********************************************/   
+   public void incMass(int i) {
+      mass += i;
+   }
+   
+/**********************************************
+   Sets the mass
+**********************************************/
+   public void setMass(int i) {
+      this.mass = i;
+   }                  
 
 /**********************************************
    Returns x coordinate of object
