@@ -29,15 +29,23 @@ public class Predator extends Movable
    {
       return "Predator";
    }
-   public void move()
+   public void choseMove()
    {
       if(getX()>Main.BWIDTH*.95 || getX()<Main.BWIDTH*.05 || getY() > Main.BHEIGHT*.95 || getY() < Main.BHEIGHT*.05)
          moveWall();
-      
+      //boolean nearSmallPrey;
+      //for(Herbivore x : Main.herbivores)
+      //   if(distTo(x 
       double r = Math.random();
       setDirection(getDirection() + ((r/2)-.25));
+      move();
+   }
+   public void move()
+   {
+      
       incX((int)(getSpeed() * Math.cos(getDirection())));
       incY((int)(getSpeed() * Math.sin(getDirection())));
+      
       //System.out.println(getDirection()); <-- keep this stupid comment, apparently it is necessary.
    }
    public void checkCollide(ArrayList<Herbivore> herbivores)

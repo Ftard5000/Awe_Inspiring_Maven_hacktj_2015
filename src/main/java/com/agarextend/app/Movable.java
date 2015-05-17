@@ -4,8 +4,7 @@ public abstract class Movable extends PositionedObject
    private double direction;
    private double pointerDist;
    private double speed;
-   private static final double pi = Math.PI;
-   private static final int RADIUSCONSTANT = 2;
+   private final double pi = Math.PI;
 
    public Movable()
    {
@@ -42,10 +41,6 @@ public abstract class Movable extends PositionedObject
 
    public double getPi() {
       return pi;
-   }
-
-   public int getRadius() {
-      return getMass()/RADIUSCONSTANT;
    }
 
    public void move()
