@@ -11,10 +11,13 @@ import java.util.Scanner;
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
    public Point mousePoint;
    public Point playerLocation;
+   public static final int BHEIGHT = 1000;
+   public static final int BWIDTH = 1000;
    public JFrame winMain;
    public Point aiLocation; 
    private ArrayList<Predator> predators;
-   private ArrayList<Herbivore> herbivores;      
+   private ArrayList<Herbivore> herbivores;
+   private ArrayList<Pellet> pellets;      
    public Main() {
       playerLocation = new Point(100, 100);
       System.out.println("How many by ai's?");
@@ -22,6 +25,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       int numAis = sc.nextInt();
       predators = new ArrayList<Predator>();
       herbivores = new ArrayList<Herbivore>();
+      pellets = new ArrayList<Pellet>();
       for(int i = 0; i < numAis; i++)
       {
          double random = Math.random();
@@ -30,10 +34,14 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
          else
             predators.add(new Predator());
       }
+      for(int i = 0; i < numAis*5; i ++)
+      {
+         pellets.add(new Pellet());
+      }
       mousePoint = new Point(100, 100);
                
       winMain = new JFrame();
-      winMain.setSize(2000, 2000);
+      winMain.setSize(BHEIGHT, BWIDTH);
       addMouseMotionListener(this);
       winMain.add(this);
       winMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,6 +69,11 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       for(Herbivore k : herbivores)
       {
          g.drawOval(k.getX()-10, k.getY()-10, 20, 20);
+      }
+      g.setColor(Color.black);
+      for(Pellet k : pellets)
+      {
+         g.fillOval(k.getX()-10, k.getY()-10, 5, 5);
       }
       g.setColor(Color.red);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);

@@ -27,4 +27,11 @@ public class Predator extends Movable
    {
       return "Predator";
    }
-}   
+   public void move()
+   {
+      double r = Math.random();
+      setDirection(getDirection() + ((r/2)-.25));
+      incX((int)(getSpeed() * Math.cos(getDirection())));
+      incY((int)(getSpeed() * Math.sin(getDirection())));
+   }
+}

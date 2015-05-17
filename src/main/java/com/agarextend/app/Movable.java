@@ -8,11 +8,11 @@ public abstract class Movable extends PositionedObject
 
    public Movable()
    {
-      super((int)(Math.random()*100), (int)(Math.random()*100));
+      super((int)(Math.random()*Main.BWIDTH), (int)(Math.random()*Main.BHEIGHT));
       direction = 0;
       pointerDist = 0.0;
       setMass(10);
-      speed = 1.0;
+      speed = 3.0;
    }
 
    public double getDirection() {
@@ -52,4 +52,6 @@ public abstract class Movable extends PositionedObject
    {
       return "Movable";
    }
+   
+
 }

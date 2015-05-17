@@ -137,5 +137,5 @@ public abstract class PositionedObject {
    }
    
       
-   public abstract void move();
+   
 }

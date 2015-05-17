@@ -27,5 +27,13 @@ public class Herbivore extends Movable
    {
       return "Herbivore";
    }
-     
+  
+   public void move()
+   {
+      double r = Math.random();
+      setDirection(getDirection() + ((r/2)-.25));
+      incX((int)(getSpeed() * Math.cos(getDirection())));
+      incY((int)(getSpeed() * Math.sin(getDirection())));
+      //System.out.println(getDirection()); <-- keep this stupid comment, apparently it is necessary.
+   }
 }   
