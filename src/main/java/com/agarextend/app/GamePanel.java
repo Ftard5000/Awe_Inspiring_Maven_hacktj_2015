@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class GamePane extends JPanel {
-   public GamePane() {
+public class GamePanel extends JPanel {
+   public GamePanel() {
       //put stuff here
    }
 

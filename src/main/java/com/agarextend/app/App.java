@@ -1,13 +1,9 @@
 package com.agarextend.app;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        GameFrame frame = new GameFrame("Agar IMproved");
     }
 }
