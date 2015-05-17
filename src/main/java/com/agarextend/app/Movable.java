@@ -72,10 +72,7 @@ public abstract class Movable extends PositionedObject
       incY(speed * Math.sin(direction));
    }
    
-   private String getChar()
-   {
-      return display;
-   }
+
    
 
 }
