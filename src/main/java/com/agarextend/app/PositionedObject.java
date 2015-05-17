@@ -32,8 +32,12 @@ public abstract class PositionedObject {
       this.sides = sides;
       this.mass = mass;
    }
-   
-/**********************************************
+
+   public void setSides(int sides) {
+      this.sides = sides;
+   }
+
+   /**********************************************
    Returns number of sides on object
 **********************************************/   
    public int getSides() {

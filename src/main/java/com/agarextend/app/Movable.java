@@ -3,7 +3,6 @@ public abstract class Movable extends PositionedObject
 {
    private double direction;
    private double pointerDist;
-   private double mass;
    private double speed;
    private final double pi = Math.PI;
 
@@ -40,30 +39,8 @@ public abstract class Movable extends PositionedObject
       this.speed = speed;
    }
 
-
-   private double getMass()
-   {
-      return mass;
-   }
-
-   public void setMass(double m) {
-      this.mass = m;
-   }
-
    public double getPi() {
       return pi;
-   }
-
-   public void addMass()
-   {
-      mass++;
-      speed = 1/(double)mass;
-   }
-   
-   public void addMass(Movable m)
-   {
-      mass += m.getMass();
-      speed = 1/(double)mass;
    }
 
    public void move()
