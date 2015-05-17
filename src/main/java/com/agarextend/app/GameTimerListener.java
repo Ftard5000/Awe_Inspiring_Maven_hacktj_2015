@@ -12,7 +12,8 @@ public class GameTimerListener implements ActionListener {
    }
 
    public void actionPerformed(ActionEvent e) {
-      panel.getGraphics().clearRect(0, 0, panel.getWidth(), panel.getHeight());
+      panel.getBuffer().setColor(Color.white);
+      panel.getBuffer().fillRect(0, 0, panel.getWidth(), panel.getHeight());
       if (panel.getMousePoint() != null) {
          Point playerLocation = panel.getPlayerLocation();
          Point mousePoint = panel.getMousePoint();
@@ -24,10 +25,10 @@ public class GameTimerListener implements ActionListener {
          double dY = Math.sin(angle * Math.PI / 180) * 4;
 
          for(Predator i : panel.getPredators()) {
-            i.display(panel.getGraphics());
+            i.display(panel.getBuffer());
          }
          for(Herbivore i : panel.getHerbivores()) {
-            i.display(panel.getGraphics());
+            i.display(panel.getBuffer());
          }
 
 
@@ -40,8 +41,8 @@ public class GameTimerListener implements ActionListener {
                                 /*double newX = playerLocation.getX()-dX;
                                 double newY = playerLocation.getY()-dY;*/
          playerLocation.setLocation(newX, newY);
-         panel.getGraphics().setColor(Color.black);
-         panel.getGraphics().fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
+         panel.getBuffer().setColor(Color.black);
+         panel.getBuffer().fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
          panel.repaint();
       }
    }

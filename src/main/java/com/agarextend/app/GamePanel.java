@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements MouseMotionListener {
       mousePoint = new Point(100, 100);
 
       timer = new Timer(10, new GameTimerListener(this));
+      timer.start();
    }
 
    public Point getMousePoint() {
@@ -73,6 +74,10 @@ public class GamePanel extends JPanel implements MouseMotionListener {
 
    public void setHerbivores(ArrayList<Herbivore> herbivores) {
       this.herbivores = herbivores;
+   }
+
+   public Graphics getBuffer() {
+      return buffer;
    }
 
    @Override

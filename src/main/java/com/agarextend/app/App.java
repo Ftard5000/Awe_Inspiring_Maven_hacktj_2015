@@ -8,12 +8,12 @@ public class App
     public static void main( String[] args )
     {
        JFrame frame = new JFrame("Agar IMproved");
+       frame.setVisible(true);
        frame.setSize(SIZE, SIZE);
        GamePanel mainPanel = new GamePanel(SIZE);
        mainPanel.addMouseMotionListener(mainPanel);
        //this.setContentPane(mainPanel);
        frame.add(mainPanel);
        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-       frame.setVisible(true);
     }
 }
