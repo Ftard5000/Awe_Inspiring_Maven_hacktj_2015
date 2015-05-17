@@ -8,10 +8,10 @@ public abstract class Movable extends PositionedObject
 
    public Movable()
    {
-      super(Math.random(), Math.random());
+      super((int)(Math.random()*100), (int)(Math.random()*100);
       direction = 0;
       pointerDist = 0.0;
-      mass = 10.0;
+      setMass(10);
       speed = 1.0;
    }
 
