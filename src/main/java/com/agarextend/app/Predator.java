@@ -7,6 +7,7 @@ public class Predator extends Movable
 {
    public Predator() {
       super();
+      setSpeed(4.0);
    }
    
    public Predator(int xC, int yC, int dir, double dist, int m, double s)
@@ -32,6 +33,7 @@ public class Predator extends Movable
    {
       if(getX()>Main.BWIDTH*.95 || getX()<Main.BWIDTH*.05 || getY() > Main.BHEIGHT*.95 || getY() < Main.BHEIGHT*.05)
          moveWall();
+      
       double r = Math.random();
       setDirection(getDirection() + ((r/2)-.25));
       move();

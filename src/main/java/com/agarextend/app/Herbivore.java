@@ -7,6 +7,7 @@ public class Herbivore extends Movable
 {
    public Herbivore() {
       super();
+      setSpeed(3.0);
    }
    
    public Herbivore(int xC, int yC, int dir, double dist, int m, double s)
