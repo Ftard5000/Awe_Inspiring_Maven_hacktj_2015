@@ -62,7 +62,7 @@ public abstract class Movable extends PositionedObject
       return getMass()/RADIUSCONSTANT;
    }
 
-   protected void checkCollidePellets(ArrayList<Pellet> pellets)
+   public void checkCollidePellets(ArrayList<Pellet> pellets)
    {
       for(int i = 0; i < pellets.size(); i++)
          if(distToSquared(pellets.get(i)) < getRadius()*getRadius())
