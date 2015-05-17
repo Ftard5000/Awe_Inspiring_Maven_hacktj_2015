@@ -72,7 +72,8 @@ public class Predator extends Movable
    }
 
    private void pointToPrey() {
-      setDirection(Math.atan((prey.getY()-this.getY())/(prey.getX()-this.getX())));
+      if(prey.getX() != this.getX())
+         setDirection(Math.atan((prey.getY()-this.getY())/(prey.getX()-this.getX())));
    }
 
    private void chase(Herbivore h)
