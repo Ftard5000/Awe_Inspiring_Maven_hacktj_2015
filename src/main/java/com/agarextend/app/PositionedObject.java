@@ -2,12 +2,7 @@ package com.agarextend.app;
 
 
 import java.awt.*;
-
-/* 
-   I added sides, mass, xcorners, and ycorners to help me draw 
-*/
-
-
+import javax.swing.*;
 
 public abstract class PositionedObject {
    private int x;
@@ -23,7 +18,7 @@ public abstract class PositionedObject {
       this.mass = 0;
    }
 //default
-   public PositionedObject(double x, double y) {
+   public PositionedObject(int x, int y) {
       this.x = x;
       this.y = y;
       this.sides = 3;
@@ -31,7 +26,7 @@ public abstract class PositionedObject {
    }
    
 //barely used   
-   public PositionedObject(double x, double y, int sides, int mass) {
+   public PositionedObject(int x, int y, int sides, int mass) {
       this.x = x;
       this.y = y;
       this.sides = sides;
@@ -121,7 +116,17 @@ public abstract class PositionedObject {
    public void incY(int i) {
       y += i;
    }
-
+   
+/**********************************************
+   Recieves name of image file based on the number of sides
+**********************************************/
+   public String shapeName(){
+      return this.getSides() + ".png";
+   }
+      
+   public void display(){
+   }
+   
+      
    public abstract void move();
-   public abstract void display();
 }
