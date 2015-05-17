@@ -22,7 +22,7 @@ public class Predator extends Movable
 
    public void display(Graphics g) {
       g.setColor(Color.red);
-      g.drawOval(getX()-10, getY()-10, 20, 20);
+      g.drawOval(getX()-, getY()-10, 20, 20);
    }
 
    public String getType()
@@ -74,5 +74,4 @@ public class Predator extends Movable
    {
       return (int)((x.getX()-getX())*(x.getX()-getX())+(x.getY()-getY())*(x.getY()-getY()));
    }
-
 }
