@@ -8,10 +8,10 @@ public class Predator extends Movable
    public enum PredatorState {UNENGAGED, PURSUING}
    public PredatorState currentState;
    public Herbivore prey;
-   public int moveCount = 0;
    public Predator() {
       super();
       setSpeed(10.0);
+      currentState = PredatorState.UNENGAGED;
    }
    
    public Predator(int xC, int yC, int dir, double dist, int m, double s)
@@ -22,6 +22,7 @@ public class Predator extends Movable
       setPointerDist(dist);
       setMass(m);
       setSpeed(s);
+      currentState = PredatorState.UNENGAGED;
    }
 
    public void display(Graphics g) {
@@ -43,12 +44,12 @@ public class Predator extends Movable
             //calculate for state change
             Herbivore minh = null;
             for (Herbivore h : herbivores) {
-               if (distToSquared(h) < 25 && (minh == null || distToSquared(h) < distToSquared(minh))) {
+               if (distToSquared(h) < 30*30 && (minh == null || distToSquared(h) < distToSquared(minh))) {
                   minh = h;
                }
             }
 
-            if (minh !=null)
+            if (minh != null)
                chase(minh);
             else {
                double r = Math.random();
@@ -72,7 +73,7 @@ public class Predator extends Movable
    }
 
    private void pointToPrey() {
-      setDirection((prey.getY()-this.getY())/(prey.getX()-this.getX()));
+      setDirection(Math.atan((prey.getY()-this.getY())/(prey.getX()-this.getX())));
    }
 
    private void chase(Herbivore h)
