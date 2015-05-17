@@ -66,19 +66,15 @@ public abstract class Movable extends PositionedObject
       speed = 1/mass;
    }
 
-   public void move()
+   private void move()
    {
       incX(speed * Math.cos(direction));
       incY(speed * Math.sin(direction));
    }
-<<<<<<< HEAD
    
    private String getChar()
    {
       return display;
    }
    
-=======
-
->>>>>>> b4c3cb3a9818aace61cdd00a18230053008f3ede
 }

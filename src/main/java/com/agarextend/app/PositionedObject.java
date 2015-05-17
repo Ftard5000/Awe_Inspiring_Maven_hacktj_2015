@@ -1,10 +1,14 @@
 package com.agarextend.app;
 
+
 import java.awt.*;
 
 /* 
    I added sides, mass, xcorners, and ycorners to help me draw 
 */
+
+
+
 public abstract class PositionedObject {
    private double x;
    private double y;
