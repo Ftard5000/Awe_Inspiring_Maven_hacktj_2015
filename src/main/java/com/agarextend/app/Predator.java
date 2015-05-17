@@ -79,7 +79,7 @@ public class Predator extends Movable
    private void chase(Herbivore h)
    {
       this.prey = h;
-      setDirection((h.getY()-getY())/(h.getX()-getX()));
+      pointToPrey();
       move();
    }
 }
