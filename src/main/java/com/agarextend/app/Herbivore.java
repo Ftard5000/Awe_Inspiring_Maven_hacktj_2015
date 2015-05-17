@@ -1,4 +1,7 @@
 package com.agarextend.app;
+
+import java.awt.*;
+
 public class Herbivore extends Movable
 {
    public Herbivore() {
@@ -15,11 +18,12 @@ public class Herbivore extends Movable
       setSpeed(s);
    }
 
-   public void display() {
-
+   public void display(Graphics g) {
+      g.setColor(Color.blue);
+      g.drawOval(getX()-10, getY()-10, 20, 20);
    }
    
-   private String getType()
+   public String getType()
    {
       return "Herbivore";
    }

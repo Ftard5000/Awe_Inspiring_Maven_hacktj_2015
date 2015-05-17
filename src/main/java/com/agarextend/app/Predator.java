@@ -1,4 +1,7 @@
 package com.agarextend.app;
+
+import java.awt.*;
+
 public class Predator extends Movable
 {
    public Predator() {
@@ -15,11 +18,13 @@ public class Predator extends Movable
       setSpeed(s);
    }
 
-   public void display() {
-
+   public void display(Graphics g) {
+      g.setColor(Color.red);
+      g.drawOval(getX()-10, getY()-10, 20, 20);
    }
-   private String getType()
+
+   public String getType()
    {
-      return "Herbivore";
+      return "Predator";
    }
 }   
