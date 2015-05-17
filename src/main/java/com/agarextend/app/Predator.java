@@ -61,32 +61,14 @@ public class Predator extends Movable
          move();
       }
    }
-   public void move()
-   {
-      incX((int) (getSpeed() * Math.cos(getDirection())));
-      incY((int) (getSpeed() * Math.sin(getDirection())));
-      //System.out.println(getDirection()); <-- keep this stupid comment, apparently it is necessary.
-   }
    public void checkCaughtPrey(ArrayList<Herbivore> herbivores)
    {
-      for(int i = 0; i < herbivores.size(); i++)
-         if(distToSquared(prey) < getRadius()*getRadius()*1.44)
-         {
-            setMass(getMass()+prey.getMass());
-            herbivores.remove(i); //TODO, check that this actually affects 'herbivores', not just a local copy
-         }
-   }
-   private void moveWall()
-   {
-      if(getX() < Main.BWIDTH*.05)
-         setDirection(0);
-      else if(getX() > Main.BWIDTH*.95)
-         setDirection(Math.PI);
-      else if(getY() < Main.BHEIGHT * .05)
-         setDirection(Math.PI/2);
-      else if(getY() > Main.BHEIGHT * .95)
-         setDirection(3*Math.PI/2);
-      move();
+      if(prey != null && distToSquared(prey) < getRadius()*getRadius()*1.44)
+      {
+         setMass(getMass()+prey.getMass());
+         herbivores.remove(prey); //TODO, check that this actually affects 'herbivores', not just a local copy
+         prey = null;
+      }
    }
 
    private void pointToPrey() {
@@ -98,9 +80,5 @@ public class Predator extends Movable
       this.prey = h;
       setDirection((h.getY()-getY())/(h.getX()-getX()));
       move();
-   }
-   private int distToSquared(PositionedObject x)
-   {
-      return (x.getX()-getX())*(x.getX()-getX())+(x.getY()-getY())*(x.getY()-getY());
    }
 }

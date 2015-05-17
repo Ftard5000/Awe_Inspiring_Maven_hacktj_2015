@@ -107,7 +107,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
             for(Herbivore h : herbivores)
             {
                h.choseMove();
-               h.checkCollide(pellets);
+               h.checkCollidePellets(pellets);
             }
             for(Predator p : predators)
             {
