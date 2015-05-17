@@ -21,9 +21,8 @@ public class Predator extends Movable
       setSpeed(s);
    }
 
-   public void display(Graphics g) {
-      g.setColor(Color.red);
-      g.drawOval(getX()-getRadius(), getY()-10, 20, 20);
+   public void display(Graphics g, Image img, int x, int y, int rx, int ry) {
+      g.drawImage(img, x, y, rx, ry, null);
    }
 
    public String getType()

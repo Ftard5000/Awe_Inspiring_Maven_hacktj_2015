@@ -20,9 +20,8 @@ public class Herbivore extends Movable
       setSpeed(s);
    }
 
-   public void display(Graphics g) {
-      g.setColor(Color.blue);
-      g.drawOval(getX()-10, getY()-10, 20, 20);
+   public void display(Graphics g, Image img, int x, int y, int rx, int ry) {
+      g.drawImage(img, x, y, rx, ry, null);
    }
    
    public String getType()

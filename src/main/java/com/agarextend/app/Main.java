@@ -4,11 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.util.ArrayList;
-import java.util.Scanner;
- 
+import java.util.*;
+import javax.imageio.*;
+import java.io.*;
+import java.awt.image.*;
  
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
+   private Image background;
    public Point mousePoint;
    public Point playerLocation;
    public static final int BHEIGHT = 750;
@@ -39,6 +41,18 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
          pellets.add(new Pellet());
       }
       mousePoint = new Point(100, 100);
+      
+      
+      //set background image
+      try{
+         background = ImageIO.read(new File ("C:/Sites/Awe_Inspiring_maven_hacktj_2015/src/main/java/com/agarextend/app/background.png"));
+      }
+      catch (IOException e)
+      {
+         System.out.println("error loading background");
+      }
+   
+      
                
       winMain = new JFrame();
       winMain.setSize(BHEIGHT, BWIDTH);
@@ -48,6 +62,8 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       winMain.setVisible(true);
       Thread thread = new Thread(this);
       thread.start();
+      
+      
    }
    public static void main(String args[])
    {
@@ -58,17 +74,35 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
    
    @Override
     public void paint(Graphics g) {
-    
-      g.clearRect(0, 0, getWidth(), getHeight());
-      g.setColor(Color.red);
+      g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+      FilePaths paths = new FilePaths();
+      
+      //g.setColor(Color.red);
+      
       for(Predator k : predators)
       {
-         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), 2*k.getRadius(), 2*k.getRadius());
+         try{
+            Image img = ImageIO.read(paths.path("pred", k.getSides()));
+            k.display(g, img, k.getX()-k.getRadius(), k.getY()-k.getRadius(), 20+2*k.getRadius(), 20+2*k.getRadius());
+            //k.display(g, img, k.getX()-k.getRadius(), k.getY()-k.getRadius(), 100, 100);
+         }
+         catch (IOException e)
+         {
+            System.out.println(k.getSides() + paths.toString("pred", k.getSides()));
+         }
       }
-      g.setColor(Color.blue);
+      //g.setColor(Color.blue);
       for(Herbivore k : herbivores)
       {
-         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), 2*k.getRadius(), 2*k.getRadius());
+         try{
+            Image img = ImageIO.read(paths.path("herb", k.getSides()));
+            k.display(g, img, k.getX()-k.getRadius(), k.getY()-k.getRadius(), 20+2*k.getRadius(), 20+2*k.getRadius());
+            //k.display(g, img, k.getX()-k.getRadius(), k.getY()-k.getRadius(), 100, 100);
+         }
+         catch (IOException e)
+         {
+            System.out.println(k.getSides() + paths.toString("herb", k.getSides()));
+         }
       }
       g.setColor(Color.black);
       for(Pellet k : pellets)
