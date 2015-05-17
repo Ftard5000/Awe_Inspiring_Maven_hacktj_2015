@@ -9,17 +9,15 @@ import java.util.Scanner;
  
  
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
-   public static final int PELLETRADIUS = 3;
-   public static final int RADIUSCONSTANT = 2;
    public Point mousePoint;
    public Point playerLocation;
    public static final int BHEIGHT = 1000;
-   public static final int BWIDTH = 1000;
+   public static final int BWIDTH = 750;
    public JFrame winMain;
    public Point aiLocation; 
-   private ArrayList<Predator> predators;
-   private ArrayList<Herbivore> herbivores;
-   private ArrayList<Pellet> pellets;      
+   public ArrayList<Predator> predators;
+   public ArrayList<Herbivore> herbivores;
+   public ArrayList<Pellet> pellets;      
    public Main() {
       playerLocation = new Point(100, 100);
       System.out.println("How many by ai's?");
@@ -63,22 +61,19 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
     
       g.clearRect(0, 0, getWidth(), getHeight());
       g.setColor(Color.red);
-      int radius;
       for(Predator k : predators)
       {
-         radius = k.getMass()/RADIUSCONSTANT;
-         g.fillOval(k.getX()-radius, k.getY()-radius, radius*2, radius*2);
+         g.fillOval(k.getX()-10, k.getY()-10, 20, 20);
       }
       g.setColor(Color.blue);
       for(Herbivore k : herbivores)
       {
-         radius = k.getMass()/RADIUSCONSTANT;
-         g.fillOval(k.getX()-radius, k.getY()-radius, radius*2, radius*2);
+         g.fillOval(k.getX()-10, k.getY()-10, 20, 20);
       }
       g.setColor(Color.black);
       for(Pellet k : pellets)
       {
-         g.fillOval(k.getX()-PELLETRADIUS, k.getY()-PELLETRADIUS, 2*PELLETRADIUS, 2*PELLETRADIUS);
+         g.fillOval(k.getX()-10, k.getY()-10, 5, 5);
       }
       g.setColor(Color.red);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
@@ -110,7 +105,10 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
                                                 ? playerLocation.getY()-dY : mousePoint.getY();
             playerLocation.setLocation(newX, newY);
             for(Herbivore h : herbivores)
+            {
                h.choseMove();
+               h.checkCollide(pellets);
+            }
             for(Predator p : predators)
                p.choseMove();
             if(Math.random()<.01)

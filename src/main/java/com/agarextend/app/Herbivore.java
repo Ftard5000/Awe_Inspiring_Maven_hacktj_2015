@@ -1,4 +1,5 @@
 package com.agarextend.app;
+import java.util.*;
 
 import java.awt.*;
 
@@ -30,7 +31,7 @@ public class Herbivore extends Movable
    
    public void choseMove()
    {
-      if(getX()>950 || getX()<50 || getY() > 950 || getY() < 50)
+      if(getX()>Main.BWIDTH*.95 || getX()<Main.BWIDTH*.05 || getY() > Main.BHEIGHT*.95 || getY() < Main.BHEIGHT*.05)
          moveWall();
       double r = Math.random();
       setDirection(getDirection() + ((r/2)-.25));
@@ -43,16 +44,30 @@ public class Herbivore extends Movable
       
       //System.out.println(getDirection()); <-- keep this stupid comment, apparently it is necessary.
    }
+   public void checkCollide(ArrayList<Pellet> pellets)
+   {
+      for(int i = 0; i < pellets.size(); i++)
+         if(distTo(pellets.get(i)) < (getMass()/2)*(getMass()/2))//CHANGE THIS TO RADIUSCONSTANT
+         {
+            setMass(getMass()+pellets.get(i).getMass());
+            pellets.remove(i);
+         }
+   
+   }
    private void moveWall()
    {
-      if(getX()>950)
+      if(getX()>Main.BWIDTH*.95)
          setDirection(Math.PI);
-      else if(getX() < 50)
+      else if(getX() < Main.BWIDTH*.05)
          setDirection(0);
-      else if(getY() > 950)
+      else if(getY() > Main.BHEIGHT)
          setDirection(3*Math.PI/2);
-      else
+      else if(getY() < Main.BHEIGHT*.05)
          setDirection(Math.PI/2);
       move();
    }
-}   
+   private int distTo(PositionedObject x)
+   {
+      return (int)((x.getX()-getX())*(x.getX()-getX())+(x.getY()-getY())*(x.getY()-getY()));
+   }
+}

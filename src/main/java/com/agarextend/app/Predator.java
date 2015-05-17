@@ -29,7 +29,7 @@ public class Predator extends Movable
    }
    public void choseMove()
    {
-      if(getX()>950 || getX()<50 || getY() > 950 || getY() < 50)
+      if(getX()>Main.BWIDTH*.95 || getX()<Main.BWIDTH*.05 || getY() > Main.BHEIGHT*.95 || getY() < Main.BHEIGHT*.05)
          moveWall();
       double r = Math.random();
       setDirection(getDirection() + ((r/2)-.25));
@@ -45,13 +45,13 @@ public class Predator extends Movable
    }
    private void moveWall()
    {
-      if(getX()>950)
+      if(getX()>Main.BWIDTH*.95)
          setDirection(Math.PI);
-      else if(getX() < 50)
+      else if(getX() < Main.BWIDTH*.05)
          setDirection(0);
-      else if(getY() > 950)
+      else if(getY() > Main.BHEIGHT*.95)
          setDirection(3*Math.PI/2);
-      else
+      else if(getY() < Main.BHEIGHT*.05)
          setDirection(Math.PI/2);
       move();
    }
