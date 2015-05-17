@@ -53,6 +53,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
    
    @Override
     public void paint(Graphics g) {
+    
       g.clearRect(0, 0, getWidth(), getHeight());
       g.setColor(Color.blue);
       for(Movable k : movables)
@@ -61,6 +62,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       }
       g.setColor(Color.red);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
+     
         
    }
    
