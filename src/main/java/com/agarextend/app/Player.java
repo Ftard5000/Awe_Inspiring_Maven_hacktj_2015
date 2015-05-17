@@ -13,5 +13,5 @@ public class Player extends PositionedObject
    public void move(){
       
    }
-  
+   public int getRadius() {return 0;}
 }

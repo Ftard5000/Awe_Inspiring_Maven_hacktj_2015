@@ -5,6 +5,9 @@ import java.util.*;
 
 public class Predator extends Movable
 {
+   public enum PredatorState {UNENGAGED, PURSUING}
+   public PredatorState currentState;
+   public Herbivore prey;
    public int moveCount = 0;
    public Predator() {
       super();
@@ -30,43 +33,48 @@ public class Predator extends Movable
    {
       return "Predator";
    }
-   public void choseMove(ArrayList<Herbivore> herbivores)
-   {
-      if(getX()>Main.BWIDTH*.95 || getX()<Main.BWIDTH*.05 || getY() > Main.BHEIGHT*.95 || getY() < Main.BHEIGHT*.05)
-         moveWall();
-      else if(moveCount < 5)
-      {
-         boolean nearSmallPrey;
-         for(Herbivore h : herbivores)
-            if(distTo(h) < 25)
-               chase(h);
-         moveCount++;
-      }
-      else
-      {
-         moveCount = 0;   
-         double r = Math.random();
-         setDirection(getDirection() + ((r/2)-.25));
+
+   public void choseMove(ArrayList<Herbivore> herbivores) {
+      if(currentState == PredatorState.UNENGAGED) {
+         if (getX() > Main.BWIDTH * .95 || getX() < Main.BWIDTH * .05 || getY() > Main.BHEIGHT * .95 || getY() < Main
+               .BHEIGHT * .05) {
+            moveWall();
+         } else {
+            //calculate for state change
+            Herbivore minh = null;
+            for (Herbivore h : herbivores) {
+               if (distToSquared(h) < 25 && (minh == null || distToSquared(h) < distToSquared(minh))) {
+                  minh = h;
+               }
+            }
+
+            if (minh !=null)
+               chase(minh);
+            else {
+               double r = Math.random();
+               setDirection(getDirection() + ((r / 2) - .25));
+               move();
+            }
+         }
+      } else if(currentState == PredatorState.PURSUING) {
+         pointToPrey();
          move();
       }
    }
    public void move()
    {
-      
-      incX((int)(getSpeed() * Math.cos(getDirection())));
-      incY((int)(getSpeed() * Math.sin(getDirection())));
-      
+      incX((int) (getSpeed() * Math.cos(getDirection())));
+      incY((int) (getSpeed() * Math.sin(getDirection())));
       //System.out.println(getDirection()); <-- keep this stupid comment, apparently it is necessary.
    }
-   public void checkCollide(ArrayList<Herbivore> herbivores)
+   public void checkCaughtPrey(ArrayList<Herbivore> herbivores)
    {
       for(int i = 0; i < herbivores.size(); i++)
-         if(distTo(herbivores.get(i)) < (getMass()/2)*(getMass()/2) && getMass() >= 1.2*herbivores.get(i).getMass())//CHANGE THIS TO RADIUSCONSTANT
+         if(distToSquared(prey) < getRadius()*getRadius()*1.44)
          {
-            setMass(getMass()+herbivores.get(i).getMass());
-            herbivores.remove(i);
+            setMass(getMass()+prey.getMass());
+            herbivores.remove(i); //TODO, check that this actually affects 'herbivores', not just a local copy
          }
-   
    }
    private void moveWall()
    {
@@ -80,13 +88,18 @@ public class Predator extends Movable
          setDirection(3*Math.PI/2);
       move();
    }
-   
+
+   private void pointToPrey() {
+      setDirection((prey.getY()-this.getY())/(prey.getX()-this.getX()));
+   }
+
    private void chase(Herbivore h)
    {
+      this.prey = h;
       setDirection((h.getY()-getY())/(h.getX()-getX()));
       move();
    }
-   private int distTo(PositionedObject x)
+   private int distToSquared(PositionedObject x)
    {
       return (x.getX()-getX())*(x.getX()-getX())+(x.getY()-getY())*(x.getY()-getY());
    }

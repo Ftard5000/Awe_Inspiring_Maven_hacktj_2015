@@ -112,7 +112,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
             for(Predator p : predators)
             {
                p.choseMove(herbivores);
-               p.checkCollide(herbivores);
+               p.checkCaughtPrey(herbivores);
             }
             if(Math.random()<.01)
                pellets.add(new Pellet());
