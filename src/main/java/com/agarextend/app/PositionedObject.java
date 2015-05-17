@@ -10,8 +10,8 @@ import java.awt.*;
 
 
 public abstract class PositionedObject {
-   private double x;
-   private double y;
+   private int x;
+   private int y;
    private int sides; //number of sides
    private int mass; //mass of object
 
@@ -83,42 +83,42 @@ public abstract class PositionedObject {
 /**********************************************
    Returns x coordinate of object
 **********************************************/
-   public double getX() {
+   public int getX() {
       return x;
    }
 
 /**********************************************
    Increments x coordinate of object by i
 **********************************************/
-   public void incX(double i) {
+   public void incX(int i) {
       x += i;
    }
    
 /**********************************************
    Sets the value of x
 **********************************************/
-   public void setX(double x) {
+   public void setX(int x) {
       this.x = x;
    }
 
 /**********************************************
    Returns y coordinate of object
 **********************************************/
-   public double getY() {
+   public int getY() {
       return y;
    }
 
 /**********************************************
    Sets the value of y
 **********************************************/
-   public void setY(double y) {
+   public void setY(int y) {
       this.y = y;
    }
    
 /**********************************************
    Increments y coordinate of object by i
 **********************************************/
-   public void incY(double i) {
+   public void incY(int i) {
       y += i;
    }
 
