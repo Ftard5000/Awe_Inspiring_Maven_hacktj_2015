@@ -92,7 +92,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
                 
                 
          if(mousePoint != null) {
-                                
+                                   
             double Xdif = playerLocation.getX() - mousePoint.getX();
             double Ydif = playerLocation.getY() - mousePoint.getY();
             double angle = Math.atan2(Ydif, Xdif) * 180 / Math.PI;
@@ -105,9 +105,11 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
                                                 ? playerLocation.getY()-dY : mousePoint.getY();
             playerLocation.setLocation(newX, newY);
             for(Herbivore h : herbivores)
-               h.move();
+               h.choseMove();
             for(Predator p : predators)
-               p.move();
+               p.choseMove();
+            if(Math.random()<.01)
+               pellets.add(new Pellet());
             repaint();
             try {
                Thread.sleep(10);
