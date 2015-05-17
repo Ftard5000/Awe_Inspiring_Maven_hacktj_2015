@@ -44,7 +44,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       winMain.setSize(BHEIGHT, BWIDTH);
       addMouseMotionListener(this);
       winMain.add(this);
-      winMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      winMain.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       winMain.setVisible(true);
       Thread thread = new Thread(this);
       thread.start();
@@ -63,17 +63,17 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       g.setColor(Color.red);
       for(Predator k : predators)
       {
-         g.fillOval(k.getX()-10, k.getY()-10, 20, 20);
+         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), k.getRadius()*2, k.getRadius()*2);
       }
       g.setColor(Color.blue);
       for(Herbivore k : herbivores)
       {
-         g.fillOval(k.getX()-10, k.getY()-10, 20, 20);
+         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), k.getRadius()*2, k.getRadius()*2);
       }
       g.setColor(Color.black);
       for(Pellet k : pellets)
       {
-         g.fillOval(k.getX()-10, k.getY()-10, 5, 5);
+         g.fillOval(k.getX()-k.getRadius(), k.getY()-k.getRadius(), 2*k.getRadius(), 2*k.getRadius());
       }
       g.setColor(Color.red);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
