@@ -34,8 +34,13 @@ public class Herbivore extends Movable
    {
       if(getX()>Main.BWIDTH*.95 || getX()<Main.BWIDTH*.05 || getY() > Main.BHEIGHT*.95 || getY() < Main.BHEIGHT*.05)
          moveWall();
-      double r = Math.random();
-      setDirection(getDirection() + ((r/2)-.25));
-      move();
+      else
+      {  
+         double r = Math.random();
+         setDirection(getDirection() + ((r/2)-.25));
+         move();
+      }
    }
+   
+
 }

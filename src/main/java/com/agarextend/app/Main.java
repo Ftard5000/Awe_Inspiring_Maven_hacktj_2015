@@ -20,7 +20,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
    public ArrayList<Pellet> pellets;      
    public Main() {
       playerLocation = new Point(100, 100);
-      System.out.println("How many by ai's?");
+      System.out.println("How many ai's?");
       Scanner sc = new Scanner(System.in);
       int numAis = sc.nextInt();
       predators = new ArrayList<Predator>();
