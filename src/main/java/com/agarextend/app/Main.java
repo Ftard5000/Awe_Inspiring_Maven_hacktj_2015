@@ -22,7 +22,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
    public ArrayList<Pellet> pellets;      
    public Main() {
       playerLocation = new Point(100, 100);
-      System.out.println("How many by ai's?");
+      System.out.println("How many ai's?");
       Scanner sc = new Scanner(System.in);
       int numAis = sc.nextInt();
       predators = new ArrayList<Predator>();
@@ -141,12 +141,12 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
             for(Herbivore h : herbivores)
             {
                h.choseMove();
-               h.checkCollide(pellets);
+               h.checkCollidePellets(pellets);
             }
             for(Predator p : predators)
             {
                p.choseMove(herbivores);
-               p.checkCollide(herbivores);
+               p.checkCaughtPrey(herbivores);
             }
             if(Math.random()<.01)
                pellets.add(new Pellet());

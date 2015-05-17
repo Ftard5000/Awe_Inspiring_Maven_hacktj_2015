@@ -1,4 +1,7 @@
 package com.agarextend.app;
+
+import java.util.ArrayList;
+
 public abstract class Movable extends PositionedObject
 {
    private double direction;
@@ -46,8 +49,8 @@ public abstract class Movable extends PositionedObject
 
    public void move()
    {
-      incX((int)(speed * Math.cos(direction)));
-      incY((int)(speed * Math.sin(direction)));
+      incX((int) (speed/(Math.sqrt((double)getMass())/5) * Math.cos(direction)));
+      incY((int) (speed/(Math.sqrt((double)getMass())/5) * Math.sin(direction)));
    }
 
    public String getType()
@@ -59,4 +62,32 @@ public abstract class Movable extends PositionedObject
       return getMass()/RADIUSCONSTANT;
    }
 
+   public void checkCollidePellets(ArrayList<Pellet> pellets)
+   {
+      for(int i = 0; i < pellets.size(); i++)
+         if(distToSquared(pellets.get(i)) < getRadius()*getRadius())
+         {
+            setMass(getMass()+pellets.get(i).getMass());
+            pellets.remove(i);
+         }
+
+   }
+
+   protected int distToSquared(PositionedObject x)
+   {
+      return ((x.getX()-getX())*(x.getX()-getX()) + (x.getY()-getY())*(x.getY()-getY()));
+   }
+
+   protected void moveWall()
+   {
+      if(getX() < Main.BWIDTH*.05)
+         setDirection(0);
+      else if(getX() > Main.BWIDTH*.95)
+         setDirection(Math.PI);
+      else if(getY() < Main.BHEIGHT * .05)
+         setDirection(Math.PI/2);
+      else if(getY() > Main.BHEIGHT * .95)
+         setDirection(3*Math.PI/2);
+      move();
+   }
 }
