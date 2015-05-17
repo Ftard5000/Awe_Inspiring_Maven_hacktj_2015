@@ -46,6 +46,6 @@ public abstract class Movable extends PositionedObject
    public void move()
    {
       incX((int)(speed * Math.cos(direction)));
-      incY((int)(speed * Math.sin(direction));
+      incY((int)(speed * Math.sin(direction)));
    }
 }
