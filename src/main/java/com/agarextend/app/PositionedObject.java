@@ -132,7 +132,8 @@ public abstract class PositionedObject {
       return this.getSides() + ".png";
    }
       
-   public void display(){
+   public void display(Graphics g) {
+
    }
    
       

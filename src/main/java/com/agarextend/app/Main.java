@@ -1,16 +1,11 @@
 package com.agarextend.app;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Point;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.Ellipse2D;
-
-import java.util.*;
- 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.Scanner;
  
  
 public class Main extends JPanel  implements MouseMotionListener, Runnable {
@@ -53,6 +48,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
    
    @Override
     public void paint(Graphics g) {
+    
       g.clearRect(0, 0, getWidth(), getHeight());
       for(Movable k : movables)
       {
@@ -69,19 +65,17 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       }
       g.setColor(Color.black);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
+     
         
    }
    
    
-   @Override
-        public void mouseDragged(MouseEvent e) {
+   public void mouseDragged(MouseEvent e) {
    }
-   @Override
-        public void mouseMoved(MouseEvent e) {
+   public void mouseMoved(MouseEvent e) {
       mousePoint = e.getPoint();
    }
-   @Override
-        public void run() {
+   public void run() {
       while(winMain.isVisible()) {
                 
                 
