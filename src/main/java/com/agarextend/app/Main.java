@@ -1,8 +1,10 @@
+package com.agarextend.app;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.Ellipse2D;
  
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,9 +14,11 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
         public Point mousePoint;
         public Point playerLocation;
         public JFrame winMain;
+        public Point aiLocation;
        
         public Main() {
                 playerLocation = new Point(100, 100);
+                aiLocation = new Point(150, 50);
                 mousePoint = new Point(100, 100);
                
                 winMain = new JFrame();
@@ -36,8 +40,12 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
     @Override
     public void paint(Graphics g) {
         g.clearRect(0, 0, getWidth(), getHeight());
+        g.setColor(Color.blue);
+        
+        g.drawOval(aiLocation.x-10, aiLocation.y-10, 20, 20);
         g.setColor(Color.red);
         g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
+        
     }
    
    
@@ -51,7 +59,10 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
         @Override
         public void run() {
                 while(winMain.isVisible()) {
+                
+                
                         if(mousePoint != null) {
+                                
                                 double Xdif = playerLocation.getX() - mousePoint.getX();
                                 double Ydif = playerLocation.getY() - mousePoint.getY();
                                 double angle = Math.atan2(Ydif, Xdif) * 180 / Math.PI;
