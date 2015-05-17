@@ -29,7 +29,7 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
       {
          double random = Math.random();
          if(random < .66)
-            movables.add(new Predator());//change to Herbivore
+            movables.add(new Herbivore());//change to Herbivore
          else
             movables.add(new Predator());
       }
@@ -54,12 +54,20 @@ public class Main extends JPanel  implements MouseMotionListener, Runnable {
    @Override
     public void paint(Graphics g) {
       g.clearRect(0, 0, getWidth(), getHeight());
-      g.setColor(Color.blue);
       for(Movable k : movables)
       {
-         g.drawOval(k.getX()-10, k.getY()-10, 20, 20);
+         if (k.getType().equals("Herbivore"))
+         {
+            g.setColor(Color.blue);
+            g.drawOval(k.getX()-10, k.getY()-10, 20, 20);
+         }
+         else
+         {
+            g.setColor(Color.red);
+            g.drawOval(k.getX()-10, k.getY()-10, 20, 20);
+         }   
       }
-      g.setColor(Color.red);
+      g.setColor(Color.black);
       g.fillRect(playerLocation.x-10, playerLocation.y-10, 20, 20);
         
    }

@@ -48,4 +48,8 @@ public abstract class Movable extends PositionedObject
       incX((int)(speed * Math.cos(direction)));
       incY((int)(speed * Math.sin(direction)));
    }
+   public String getType()
+   {
+      return "Movable";
+   }
 }

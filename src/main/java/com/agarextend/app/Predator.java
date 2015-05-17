@@ -18,4 +18,8 @@ public class Predator extends Movable
    public void display() {
 
    }
+   private String getType()
+   {
+      return "Herbivore";
+   }
 }   
